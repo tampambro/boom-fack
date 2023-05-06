@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Boom-fuck</title>
+</head>
+<body>
+
+  <main>
+
+    <div id="timer">
+      <p>Следующий звук через <span id="time"></span> секунд!</p>
+    </div>
+
+    <form>
+      <label>
+        <p>Минимальный интервал времени между звуками</p>
+        <input id="min_int" type="number" value="1" />
+      </label>
+
+      <label>
+        <p>Максимально интервал времени между звуками</p>
+        <input id="max_int" type="number" value="10" />
+      </label>
+    </form>
+
+    <div class="main-controls">
+      <button id="start_btn">Старт</button>
+      <button id="stop_btn">Стоп</button>
+    </div>
+  </main>
+
+  <script src="./js/sounds_data.js"></script>
+  <script src="./js/timer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
