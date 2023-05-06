@@ -3,11 +3,22 @@ const timer = new Timer();
 
 let timeoutIndex;
 let playingSound;
-
-prepareSounds();
+let soundsSetName;
 
 document.querySelector('#start_btn').addEventListener('click', e => {
-  playRundomSound();
+	soundsSetName = document.querySelector('#sounds_set_name').value;
+
+	let timeForStart = document.querySelector('#start_time').value;
+	let timeInterval = document.querySelector('#time_interval').value;
+
+	if (timeForStart) {
+		document.querySelector('#start_time').value = '';
+		timer.setTimer(timeForStart, timeInterval);
+		return;
+	}
+
+	prepareSounds();
+	playRundomSound();
 });
 
 document.querySelector('#stop_btn').addEventListener('click', e => {
@@ -18,8 +29,8 @@ document.querySelector('#stop_btn').addEventListener('click', e => {
 });
 
 function prepareSounds() {
-  soundsData.forEach(sound => {
-    const audioElem = new Audio(`./sounds/${sound.name}.${sound.extension}`);
+  eval(soundsSetName).forEach(sound => {
+    const audioElem = new Audio(`./assets/sounds/${sound.name}.${sound.extension}`);
 
     audioElem.addEventListener('ended', () => {
       prepareNextTrack();
@@ -30,13 +41,13 @@ function prepareSounds() {
 }
 
 function playRundomSound() {
-  if (!soundsData.length) {
+  if (!eval(soundsSetName).length) {
     alert('Нет звуков!');
     return;
   }
 
-  const number = getRandomInt(0, soundsData.length - 1);
-  playingSound = soundsData[number].name;
+  const number = getRandomInt(0, eval(soundsSetName).length - 1);
+  playingSound = eval(soundsSetName)[number].name;
   soundsCollection.get(playingSound).play();
 }
 

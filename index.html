@@ -10,32 +10,63 @@
 </head>
 <body>
 
-  <main>
+  <main class="content">
+		<h1>BOOM-fack</h1>
 
     <div id="timer">
       <p>Следующий звук через <span id="time"></span> секунд!</p>
     </div>
 
+		<div id="info_start"></div>
+		<div id="info_end"></div>
+
     <form>
       <label>
-        <p>Минимальный интервал времени между звуками</p>
-        <input id="min_int" type="number" value="1" />
+        <p>Минимальный интервал времени между звуками (сек.)</p>
+        <input id="min_int" type="number" placeholder="Введите минимальное время между звуками" value="1" />
       </label>
 
       <label>
-        <p>Максимально интервал времени между звуками</p>
-        <input id="max_int" type="number" value="10" />
+        <p>Максимально интервал времени между звуками (сек.)</p>
+        <input id="max_int" type="number" placeholder="Введите максимальное время между звуками" value="10" />
       </label>
+
+			<label>
+				<p>Время начала работы</p>
+				<input id="start_time" type="time" placeholder="Введите время начала работы" />
+			</label>
+
+			<label>
+				<p>Количество времени для отработки (мин.)</p>
+				<input id="time_interval" type="number" placeholder="Введите количество минут для отработки" />
+			</label>
+
+			<label>
+				<p>Коллеция звуков</p>
+				<select id="sounds_set_name">
+					<option value="SOUNDS_FULL_DATA">Все звуки</option>
+					<option value="BARKING">Лай</option>
+					<option value="CREAK_OF_THE_CHAIR">Скрип стула</option>
+					<option value="DOOR">Двери</option>
+					<option value="STAPS">Шаги</option>
+				</select>
+			</label>
     </form>
 
     <div class="main-controls">
-      <button id="start_btn">Старт</button>
-      <button id="stop_btn">Стоп</button>
+      <button class="btn" id="start_btn">Старт</button>
+      <button class="btn" id="stop_btn">Стоп</button>
     </div>
   </main>
 
-  <script src="./js/sounds_data.js"></script>
+  <script src="./js/sounds_sets/barking.js"></script>
+  <script src="./js/sounds_sets/creak_of_the_chair.js"></script>
+  <script src="./js/sounds_sets/door.js"></script>
+  <script src="./js/sounds_sets/sounds_full_data.js"></script>
+  <script src="./js/sounds_sets/staps.js"></script>
+
   <script src="./js/timer.js"></script>
+
   <script src="script.js"></script>
 </body>
 </html>
