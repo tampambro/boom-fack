@@ -11,10 +11,14 @@ document.querySelector('#start_btn').addEventListener('click', e => {
 	let timeForStart = document.querySelector('#start_time').value;
 	let timeInterval = document.querySelector('#time_interval').value;
 
-	if (timeForStart) {
+	if (timeForStart && !timer.isOn) {
 		document.querySelector('#start_time').value = '';
 		timer.setTimer(timeForStart, timeInterval);
 		return;
+	}
+
+	if (!timeForStart && timeInterval && !timer.isOn) {
+		timer.setTimer(null, timeInterval);
 	}
 
 	prepareSounds();
@@ -23,14 +27,20 @@ document.querySelector('#start_btn').addEventListener('click', e => {
 
 document.querySelector('#stop_btn').addEventListener('click', e => {
   soundsCollection.get(playingSound).pause();
-  clearInterval(timeoutIndex);
-  timer.stop();
-  document.querySelector('#timer').style.visibility = 'hidden';
+	clearInterval(timeoutIndex);
+	timer.stop();
+	timer.startTimerIndex = null;
+	timer.endTimerIndex = null;
+	timer.isOn = false;
+	document.querySelector('#timer').style.visibility = 'hidden';
+	document.querySelector('#info_start').innerHTML = '';
+	document.querySelector('#info_end').innerHTML = '';
 });
 
 function prepareSounds() {
   eval(soundsSetName).forEach(sound => {
-    const audioElem = new Audio(`./assets/sounds/${sound.name}.${sound.extension}`);
+		const audioElem = new Audio(`./assets/sounds/${sound.name}.${sound.extension}`);
+		audioElem.setAttribute('controls', true);
 
     audioElem.addEventListener('ended', () => {
       prepareNextTrack();
@@ -46,8 +56,16 @@ function playRundomSound() {
     return;
   }
 
-  const number = getRandomInt(0, eval(soundsSetName).length - 1);
-  playingSound = eval(soundsSetName)[number].name;
+	const number = getRandomInt(0, eval(soundsSetName).length - 1);
+	const playerElem = document.querySelector('#player');
+	const audioElem = playerElem.querySelector('audio');
+
+	if (audioElem) {
+		playerElem.removeChild(audioElem);
+	}
+
+	playingSound = eval(soundsSetName)[number].name;
+	playerElem.appendChild(soundsCollection.get(playingSound));
   soundsCollection.get(playingSound).play();
 }
 
