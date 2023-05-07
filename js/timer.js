@@ -23,7 +23,6 @@ class Timer {
 	}
 
 	setTimer(time, timeInterval) {
-		console.log(time);
 		this.isOn = true;
 		let waitTime;
 		let present = new Date();
@@ -50,7 +49,6 @@ class Timer {
 				waitTime = ((((((24 - hours) + time[0]) * 60) * 60) * 1000) + (time[1] * 60) * 1000) - (seconds * 1000);
 			}
 
-			console.log(waitTime);
 			document.querySelector('#info_start').innerHTML = `Работа начнётся в <strong>${time[0] < 10 ? '0' + time[0] : time[0]}:${time[1] < 10 ? '0' + time[1] : time[1]}</strong>.`;
 			this.startTimerIndex = setTimeout(() => {
 				document.querySelector('#start_btn').click();

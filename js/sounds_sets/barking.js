@@ -7,4 +7,4 @@ const BARKING = [
 		name: "barking_2",
 		extension: "mp3"
 	},
-]
+];

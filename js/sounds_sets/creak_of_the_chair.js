@@ -15,4 +15,8 @@ const CREAK_OF_THE_CHAIR = [
     name: "creak_of_the_chair_4",
     extension: "mp3"
   },
+  {
+    name: "creak_of_the_chair_5",
+    extension: "mp3"
+  },
 ];
