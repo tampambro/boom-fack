@@ -1,78 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css" />
-  <title>Boom-fack</title>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" href="./assets/favicon.png" />
+	<link rel="stylesheet" href="style.css" />
+	<title>Boom-fack</title>
 </head>
+
 <body>
 
-  <main class="content">
+	<main class="content">
 		<h1>BOOM-fack</h1>
 
-    <div id="timer">
-      <p>Следующий звук через <span id="time"></span> секунд!</p>
-    </div>
+		<div id="timer">
+			<p>Следующий звук через <span id="time"></span> секунд!</p>
+		</div>
 
 		<div id="info_start"></div>
 		<div id="info_end"></div>
 
-    <form>
-      <label>
-        <p>Минимальный интервал времени между звуками (сек.)</p>
-        <input id="min_int" type="number" placeholder="Введите минимальное время между звуками" value="1" />
-      </label>
+		<form>
+			<label>
+				<p>Минимальный интервал времени между звуками (сек.)</p>
+				<input class="settings-input" id="min_int" type="number" placeholder="Введите минимальное время между звуками" value="1" />
+			</label>
 
-      <label>
-        <p>Максимально интервал времени между звуками (сек.)</p>
-        <input id="max_int" type="number" placeholder="Введите максимальное время между звуками" value="10" />
-      </label>
+			<label>
+				<p>Максимально интервал времени между звуками (сек.)</p>
+				<input class="settings-input" id="max_int" type="number" placeholder="Введите максимальное время между звуками" value="10" />
+			</label>
 
 			<label>
 				<p>Время начала работы</p>
-				<input id="start_time" type="time" placeholder="Введите время начала работы" />
+				<input class="settings-input" id="start_time" type="time" placeholder="Введите время начала работы" />
 			</label>
 
 			<label>
 				<p>Количество времени для отработки (мин.)</p>
-				<input id="time_interval" type="number" placeholder="Введите количество минут для отработки" />
+				<input class="settings-input" id="time_interval" type="number" placeholder="Введите количество минут для отработки" />
 			</label>
 
-			<label>
-				<p>Коллеция звуков</p>
-				<select id="sounds_set_name">
-					<option value="SOUNDS_FULL_DATA">Все звуки</option>
-					<option value="BARKING">Лай</option>
-					<option value="CREAK_OF_THE_CHAIR">Скрип стула</option>
-					<option value="DOOR">Двери</option>
-					<option value="STAPS">Шаги</option>
-					<option value="ULTRASOUND_FOR_DOGS">Ультразвуки</option>
-					<option value="THROW_AND_RIDE">Падения и катания</option>
-				</select>
-			</label>
-    </form>
 
-    <div class="main-controls">
-      <button class="btn" id="start_btn">Старт</button>
-      <button class="btn" id="stop_btn">Стоп</button>
-    </div>
+			<p>Коллеция звуков</p>
+			<fieldset id="sounds_combination">
+				<label>
+					Шаги
+					<input type="checkbox" value="STAPS" />
+				</label>
+				<label>
+					Скрип стула
+					<input type="checkbox" value="CREAK_OF_THE_CHAIR" />
+				</label>
+				<label>
+					Двери
+					<input type="checkbox" value="DOOR" />
+				</label>
+				<label>
+					Падения и катания
+					<input type="checkbox" value="THROW_AND_RIDE" />
+				</label>
+				<label>
+					Лай
+					<input type="checkbox" value="BARKING" />
+				</label>
+				<label>
+					Ультразвуки
+					<input type="checkbox" value="ULTRASOUND_FOR_DOGS" />
+				</label>
+			</fieldset>
+		</form>
+
+		<div class="main-controls">
+			<button class="btn" id="start_btn">Старт</button>
+			<button class="btn" id="stop_btn">Стоп</button>
+		</div>
 
 		<figure id="player"></figure>
-  </main>
+	</main>
 
-  <script src="./js/sounds_sets/barking.js"></script>
-  <script src="./js/sounds_sets/creak_of_the_chair.js"></script>
-  <script src="./js/sounds_sets/door.js"></script>
-  <script src="./js/sounds_sets/sounds_full_data.js"></script>
-  <script src="./js/sounds_sets/staps.js"></script>
-  <script src="./js/sounds_sets/ultrasound_for_dogs.js"></script>
-  <script src="./js/sounds_sets/throw_and_ride.js"></script>
+	<script src="./js/sounds_sets/barking.js"></script>
+	<script src="./js/sounds_sets/creak_of_the_chair.js"></script>
+	<script src="./js/sounds_sets/door.js"></script>
+	<script src="./js/sounds_sets/staps.js"></script>
+	<script src="./js/sounds_sets/ultrasound_for_dogs.js"></script>
+	<script src="./js/sounds_sets/throw_and_ride.js"></script>
 
-  <script src="./js/timer.js"></script>
+	<script src="./js/timer.js"></script>
 
-  <script src="script.js"></script>
+	<script src="script.js"></script>
 </body>
+
 </html>

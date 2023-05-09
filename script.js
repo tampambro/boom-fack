@@ -3,10 +3,17 @@ const timer = new Timer();
 
 let timeoutIndex;
 let playingSound;
-let soundsSetName;
+let soundsSetNames = [];
+let soundsSet = [];
 
 document.querySelector('#start_btn').addEventListener('click', e => {
-	soundsSetName = document.querySelector('#sounds_set_name').value;
+	const soundsNamesElem = document.querySelector('#sounds_combination').querySelectorAll('input');
+
+	soundsNamesElem.forEach(elem => {
+		if (elem.checked) {
+			soundsSetNames.push(elem.value);
+		}
+	});
 
 	let timeForStart = document.querySelector('#start_time').value;
 	let timeInterval = document.querySelector('#time_interval').value;
@@ -38,25 +45,29 @@ document.querySelector('#stop_btn').addEventListener('click', e => {
 });
 
 function prepareSounds() {
-  eval(soundsSetName).forEach(sound => {
-		const audioElem = new Audio(`./assets/sounds/${sound.name}.${sound.extension}`);
-		audioElem.setAttribute('controls', true);
+	soundsSetNames.forEach(name => {
+		soundsSet = [...soundsSet, ...eval(name)];
 
-    audioElem.addEventListener('ended', () => {
-      prepareNextTrack();
-    });
+		eval(name).forEach(sound => {
+			const audioElem = new Audio(`./assets/sounds/${sound.name}.${sound.extension}`);
+			audioElem.setAttribute('controls', true);
 
-    soundsCollection.set(sound.name, audioElem);
-  });
+			audioElem.addEventListener('ended', () => {
+				prepareNextTrack();
+			});
+
+			soundsCollection.set(sound.name, audioElem);
+		});
+	});
 }
 
 function playRundomSound() {
-  if (!eval(soundsSetName).length) {
+  if (!eval(soundsSet).length) {
     alert('Нет звуков!');
     return;
   }
 
-	const number = getRandomInt(0, eval(soundsSetName).length - 1);
+	const number = getRandomInt(0, eval(soundsSet).length - 1);
 	const playerElem = document.querySelector('#player');
 	const audioElem = playerElem.querySelector('audio');
 
@@ -64,7 +75,7 @@ function playRundomSound() {
 		playerElem.removeChild(audioElem);
 	}
 
-	playingSound = eval(soundsSetName)[number].name;
+	playingSound = eval(soundsSet)[number].name;
 	playerElem.appendChild(soundsCollection.get(playingSound));
   soundsCollection.get(playingSound).play();
 }

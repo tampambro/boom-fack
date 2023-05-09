@@ -31,12 +31,17 @@ body {
 	font-family: "Roboto", "Arial", sans-serif;
 }
 
-input {
+.settings-input {
 	width: 100%;
 }
 
 #timer {
   visibility: hidden;
+}
+
+#sounds_combination{
+	display: flex;
+	flex-direction: column;
 }
 
 .content {
