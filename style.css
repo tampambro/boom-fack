@@ -1,6 +1,5 @@
 @font-face {
 	font-family: "Roboto";
-	font-style: normal;
 	font-weight: 400;
 	src: local("Roboto"),
 			url("./assets/fonts/Roboto-Regular.ttf") format("ttf");
@@ -77,4 +76,9 @@ body {
 
 .btn:active {
 	background: #2e343b;
+}
+
+.btn:disabled {
+	cursor: not-allowed;
+	background: #970017;
 }

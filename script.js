@@ -8,7 +8,7 @@ let soundsSet = [];
 
 document.querySelector('#start_btn').addEventListener('click', e => {
 	const soundsNamesElem = document.querySelector('#sounds_combination').querySelectorAll('input');
-
+	document.querySelector('#start_btn').setAttribute('disabled', true);
 	soundsNamesElem.forEach(elem => {
 		if (elem.checked) {
 			soundsSetNames.push(elem.value);
@@ -33,6 +33,7 @@ document.querySelector('#start_btn').addEventListener('click', e => {
 });
 
 document.querySelector('#stop_btn').addEventListener('click', e => {
+	document.querySelector('#start_btn').removeAttribute('disabled');
   soundsCollection.get(playingSound).pause();
 	clearInterval(timeoutIndex);
 	timer.stop();
