@@ -44,6 +44,10 @@ body {
 	flex-direction: column;
 }
 
+.message-wrap {
+	min-height: 17px;
+}
+
 .content {
 	max-width: 62em;
 	margin: auto;
