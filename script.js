@@ -34,7 +34,7 @@ document.querySelector('#start_btn').addEventListener('click', e => {
 
 document.querySelector('#stop_btn').addEventListener('click', e => {
 	document.querySelector('#start_btn').removeAttribute('disabled');
-  soundsCollection.get(playingSound).pause();
+	soundsCollection.get(playingSound).pause();
 	clearInterval(timeoutIndex);
 	timer.stop();
 	timer.startTimerIndex = null;
@@ -63,10 +63,10 @@ function prepareSounds() {
 }
 
 function playRundomSound() {
-  if (!eval(soundsSet).length) {
-    alert('Нет звуков!');
-    return;
-  }
+	if (!eval(soundsSet).length) {
+		alert('Нет звуков!');
+		return;
+	}
 
 	const number = getRandomInt(0, eval(soundsSet).length - 1);
 	const playerElem = document.querySelector('#player');
@@ -78,22 +78,22 @@ function playRundomSound() {
 
 	playingSound = eval(soundsSet)[number].name;
 	playerElem.appendChild(soundsCollection.get(playingSound));
-  soundsCollection.get(playingSound).play();
+	soundsCollection.get(playingSound).play();
 }
 
 function prepareNextTrack() {
-  const min = +document.querySelector('#min_int').value;
-  const max = +document.querySelector('#max_int').value;
-  const waitingTime = getRandomInt(min, max);
-  const timeElem = document.querySelector('#time');
+	const min = +document.querySelector('#min_int').value;
+	const max = +document.querySelector('#max_int').value;
+	const waitingTime = getRandomInt(min, max);
+	const timeElem = document.querySelector('#time');
 
-  timer.elem = timeElem;
-  timer.time = waitingTime;
-  timer.start();
+	timer.elem = timeElem;
+	timer.time = waitingTime;
+	timer.start();
 
-  timeoutIndex = setTimeout(() => playRundomSound(), waitingTime * 1000);
+	timeoutIndex = setTimeout(() => playRundomSound(), waitingTime * 1000);
 }
 
 function getRandomInt(min = 0, max = 1) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
