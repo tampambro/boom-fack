@@ -28,6 +28,21 @@ body {
 	background: #22272e;
 	color: rgb(173, 186, 199);
 	font-family: "Roboto", "Arial", sans-serif;
+	margin: 0;
+}
+
+header {
+	background: black;
+	padding: .4em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0;
 }
 
 .settings-input {
@@ -41,10 +56,11 @@ body {
 #sounds_combination{
 	display: flex;
 	flex-direction: column;
+	margin-bottom: .8em;
 }
 
 .message-wrap {
-	min-height: 17px;
+	min-height: 1.2em;
 }
 
 .content {
@@ -81,4 +97,17 @@ body {
 .btn:disabled {
 	cursor: not-allowed;
 	background: #970017;
+}
+
+.form-error {
+	color: rgb(246, 69, 69);
+	visibility: hidden;
+}
+
+.fieldset-err {
+	border-color: rgb(246, 69, 69);
+}
+
+.form-error.active {
+	visibility: visible;
 }

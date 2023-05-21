@@ -1,14 +1,20 @@
 const soundsCollection = new Map();
 const timer = new Timer();
 
+const phrases = ['Это не у нас...', 'Погода хорошая - сходите, погуляйте.', 'Если что, вызывайте полицию.', 'Ой, а я не слышу...'];
+
 let timeoutIndex;
 let playingSound;
 let soundsSetNames = [];
 let soundsSet = [];
 
+document.querySelector('#phrase_of_the_day').textContent = phrases[getRandomInt(0, phrases.length - 1)];
+
 document.querySelector('#start_btn').addEventListener('click', e => {
+	soundsSetNames = [];
+
 	const soundsNamesElem = document.querySelector('#sounds_combination').querySelectorAll('input');
-	document.querySelector('#start_btn').setAttribute('disabled', true);
+
 	soundsNamesElem.forEach(elem => {
 		if (elem.checked) {
 			soundsSetNames.push(elem.value);
@@ -28,8 +34,17 @@ document.querySelector('#start_btn').addEventListener('click', e => {
 		timer.setTimer(null, timeInterval);
 	}
 
-	prepareSounds();
-	playRundomSound();
+	if (soundsSetNames.length) {
+		document.querySelector('#sounds_combination').classList.remove('fieldset-err');
+		document.querySelector('#sounds_combination_err').classList.remove('active');
+
+		prepareSounds();
+		playRundomSound();
+	} else {
+		document.querySelector('#sounds_combination').classList.add('fieldset-err');
+		document.querySelector('#sounds_combination_err').classList.add('active');
+		return;
+	}
 });
 
 document.querySelector('#stop_btn').addEventListener('click', e => {
@@ -46,6 +61,7 @@ document.querySelector('#stop_btn').addEventListener('click', e => {
 });
 
 function prepareSounds() {
+	soundsSet = [];
 	soundsSetNames.forEach(name => {
 		soundsSet = [...soundsSet, ...eval(name)];
 
@@ -67,6 +83,8 @@ function playRundomSound() {
 		alert('Нет звуков!');
 		return;
 	}
+
+	document.querySelector('#start_btn').setAttribute('disabled', true);
 
 	const number = getRandomInt(0, eval(soundsSet).length - 1);
 	const playerElem = document.querySelector('#player');

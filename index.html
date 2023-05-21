@@ -12,10 +12,13 @@
 </head>
 
 <body>
-
-	<main class="content">
+	<header>
 		<h1>BOOM-fack</h1>
 
+		<q id="phrase_of_the_day"></q>
+	</header>
+
+	<main class="content">
 		<div id="timer">
 			<p>Следующий звук через <span id="time"></span> секунд!</p>
 		</div>
@@ -72,6 +75,7 @@
 					<input type="checkbox" value="ULTRASOUND_FOR_DOGS" />
 				</label>
 			</fieldset>
+			<div id="sounds_combination_err" class="form-error">Выберите звуки</div>
 		</form>
 
 		<div class="main-controls">
